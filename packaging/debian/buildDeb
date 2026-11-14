@@ -1,0 +1,93 @@
+#!/bin/bash
+# SPDX-License-Identifier: MIT
+#
+# buildDeb -- build mbp143-audio_<version>_<arch>.deb for Ubuntu 26.04 and its
+# derivatives from the tree this file sits in, with cargo and plain dpkg-deb:
+# no debhelper.
+#
+#   packaging/debian/buildDeb [outdir]       (default: packaging/debian)
+#
+# Needs cargo, make, git and dpkg-dev, and the network for the lv2 crate on
+# the first build. Build it on the release it is for: the plugin links that
+# release's glibc. NOCHECK=1 skips the tests.
+#
+# Install on the Mac:  sudo apt install ./mbp143-audio_*.deb
+# then  systemctl --user restart pipewire pipewire-pulse wireplumber
+#
+# The version is the tag's (v1.0.0 -> 1.0.0), with +r<commits>.g<hash> past a
+# tag, and <Cargo version>~r<commits>.g<hash> while there is no tag yet.
+
+set -eu
+cd "$(dirname "$0")/../.."
+out=$(realpath "${1:-packaging/debian}")
+pkg=mbp143-audio
+arch=$(dpkg --print-architecture)
+
+if desc=$(git describe --long --tags --match 'v[0-9]*' --abbrev=7 2>/dev/null); then
+  ver=$(printf '%s' "${desc#v}" | sed -E 's/-0-g[0-9a-f]+$//; s/-([0-9]+)-g([0-9a-f]+)$/+r\1.g\2/')
+else
+  cargo_ver=$(sed -n '/^\[workspace.package\]/,/^\[/s/^version = "\(.*\)"/\1/p' Cargo.toml)
+  ver="$cargo_ver~r$(git rev-list --count HEAD).g$(git rev-parse --short=7 HEAD)"
+fi
+[ -z "$(git status --porcelain -- . ':!packaging/debian/*.deb')" ] || ver=$ver.dirty
+
+make CARGOFLAGS=--locked
+[ -n "${NOCHECK:-}" ] || make check CARGOFLAGS=--locked
+
+root=$(mktemp -d); trap 'rm -rf "$root"' EXIT
+chmod 755 "$root"
+make install PREFIX=/usr DESTDIR="$root" CARGOFLAGS=--locked
+so=$root/usr/lib/lv2/$pkg.lv2/$pkg.so
+strip --strip-unneeded "$so"
+chmod 644 "$so"
+install -Dm644 LICENSE "$root/usr/share/doc/$pkg/copyright"
+printf '%s (%s) unstable; urgency=medium\n\n  * Built from %s.\n\n -- Daniel Betz <dnlbtz@gmail.com>  %s\n' \
+  "$pkg" "$ver" "$(git rev-parse --short=7 HEAD)" "$(git log -1 --format=%cD)" |
+  gzip -9n > "$root/usr/share/doc/$pkg/changelog.gz"
+chmod 644 "$root/usr/share/doc/$pkg/changelog.gz"
+
+# the plugin's own library dependencies, as dpkg works them out
+libs=$(mkdir -p "$root/debian" && touch "$root/debian/control" &&
+       cd "$root" && dpkg-shlibdeps -O "$so" 2>/dev/null | sed -n 's/^shlibs:Depends=//p')
+rm -rf "$root/debian"
+[ -n "$libs" ] || libs='libc6, libgcc-s1'
+
+mkdir -p "$root/DEBIAN"
+cat > "$root/DEBIAN/control" <<CTRL
+Package: $pkg
+Version: $ver
+Architecture: $arch
+Maintainer: Daniel Betz <dnlbtz@gmail.com>
+Installed-Size: $(du -sk --exclude=DEBIAN "$root" | cut -f1)
+Depends: $libs, pipewire (>= 1.4), libspa-0.2-modules-extra, wireplumber (>= 0.5.8)
+Recommends: snd-hda-macbookpro-dkms
+Section: sound
+Priority: optional
+Homepage: https://github.com/dnlbtz/mbp143-audio
+Description: Audio DSP for the 15" MacBook Pro of 2017 (MacBookPro14,3)
+ What this model's four speakers need, for PipeWire: the EQ, the
+ crossover to tweeters and woofers, the compressors, the loudness curve
+ that follows the volume, and the limiters and thermal protection that keep
+ the speakers safe. WirePlumber loads it for the built-in speakers and hides
+ the raw sink behind it. A second graph raises the headset microphone to
+ a usable level. On any other machine the package does nothing.
+ .
+ Needs a driver for the Cirrus CS8409 codec (snd-hda-macbookpro-dkms).
+CTRL
+
+cat > "$root/DEBIAN/postinst" <<'POST'
+#!/bin/sh
+set -e
+[ "$1" = configure ] || exit 0
+cat <<'MSG'
+mbp143-audio: the speakers come up through WirePlumber after
+  systemctl --user restart pipewire pipewire-pulse wireplumber
+or the next login. Without the snd-hda-macbookpro driver there is no sound
+card for it to act on.
+MSG
+POST
+chmod 755 "$root/DEBIAN/postinst"
+
+deb=$out/${pkg}_${ver}_${arch}.deb
+dpkg-deb --root-owner-group -Zxz --build "$root" "$deb" >/dev/null
+echo "$deb"

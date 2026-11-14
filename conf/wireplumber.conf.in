@@ -1,0 +1,112 @@
+# mbp143-audio: MacBookPro14,3 audio DSP, set up by WirePlumber.
+#
+# Every rule in this file keys on the hardware, so on any other machine it does nothing:
+# the CS8409 behind codec subsystem 106b3900, which is the MacBookPro14,3 alone
+# (davidjo's snd-hda-macbookpro quirk table), on the 100-series HDA controller.
+#
+# - the card runs the four-channel profile unless headphones are plugged in,
+#   then the stereo one (mbp143-audio-device.lua, which picks it ahead of the
+#   stored profile; the priority rule below is only a fallback)
+# - the raw four-channel sink runs at 44100 Hz only, the rate the graph's
+#   coefficients are for, and the graph holds PipeWire's clock there while it
+#   plays (node.force-rate in speakers.json), so a 48000 Hz client is resampled
+#   on its way in; other devices keep PipeWire's own clock rules
+# - node.software-dsp loads the speaker graph when that sink appears and hides
+#   the sink from every client but WirePlumber, so no stream is connected to
+#   the speakers without the crossover, limiters and thermal protection in
+#   front (a client that links ports itself, a patchbay or pw-link, still
+#   can: the sink's ports stay visible); if the graph fails to load there is
+#   no speaker output at all
+# - mbp143-audio-device.lua also holds the raw sink's volume at 100 %
+#   (0 dB, alsa-lib's softvol passes the samples unchanged), since the volume
+#   is the graph's Loudness stage now
+# - the graphs need WirePlumber's adapter factory, which WirePlumber 0.5.8
+#   and 0.5.10 load only when something else asks for it (Bluetooth, or a
+#   distribution's module), so the profile below asks for it
+#
+# Installed by `make install` with @DATADIR@ replaced.
+
+monitor.alsa.rules = [
+  {
+    matches = [
+      {
+        node.name = "alsa_output.pci-0000_00_1f.3.analog-surround-40"
+        alsa.components = "~HDA:10138409,106b3900,.*"
+      }
+    ]
+    actions = {
+      update-props = {
+        audio.rate = 44100
+        audio.allowed-rates = [ 44100 ]
+        node.description = "MacBook Pro 14,3 Raw Speakers (do not use)"
+        node.nick = "RawSpeakers"
+      }
+    }
+  }
+]
+
+device.profile.priority.rules = [
+  {
+    matches = [
+      {
+        device.name = "alsa_card.pci-0000_00_1f.3"
+        device.product.id = "0xa170"
+        alsa.mixer_name = "Cirrus Logic CS8409/CS42L83"
+      }
+    ]
+    actions = {
+      update-props = {
+        priorities = [
+          "output:analog-surround-40+input:analog-stereo"
+          "output:analog-surround-40"
+        ]
+      }
+    }
+  }
+]
+
+node.software-dsp.rules = [
+  {
+    matches = [
+      {
+        node.name = "alsa_output.pci-0000_00_1f.3.analog-surround-40"
+        alsa.components = "~HDA:10138409,106b3900,.*"
+      }
+    ]
+    actions = {
+      create-filter = {
+        filter-path = "@DATADIR@/mbp143-audio/speakers.json"
+        hide-parent = true
+      }
+    }
+  }
+  {
+    matches = [
+      {
+        node.name = "alsa_input.pci-0000_00_1f.3.analog-stereo"
+        alsa.components = "~HDA:10138409,106b3900,.*"
+      }
+    ]
+    actions = {
+      # not hidden: the raw source carries the port choice (internal or headset mic)
+      create-filter = {
+        filter-path = "@DATADIR@/mbp143-audio/mic.json"
+      }
+    }
+  }
+]
+
+wireplumber.components = [
+  {
+    name = device/mbp143-audio-device.lua, type = script/lua
+    provides = custom.mbp143-audio
+  }
+]
+
+wireplumber.profiles = {
+  main = {
+    custom.mbp143-audio = required
+    node.software-dsp = required
+    pw.node-factory.adapter = required
+  }
+}

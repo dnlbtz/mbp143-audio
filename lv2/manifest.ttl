@@ -1,0 +1,46 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:mbp143-audio>
+	a doap:Project ;
+	doap:name "mbp143-audio" ;
+	doap:license <https://spdx.org/licenses/MIT> ;
+	doap:homepage <https://github.com/dnlbtz/mbp143-audio> ;
+	doap:maintainer [
+		a foaf:Person ;
+		foaf:name "Daniel Betz" ;
+		foaf:mbox <mailto:dnlbtz@gmail.com> ;
+		foaf:homepage <https://github.com/dnlbtz/mbp143-audio>
+	] .
+
+<urn:mbp143-audio:thermal>
+	a lv2:Plugin ;
+	lv2:binary <mbp143-audio.so> ;
+	rdfs:seeAlso <thermal.ttl> .
+
+<urn:mbp143-audio:controlfreak>
+	a lv2:Plugin ;
+	lv2:binary <mbp143-audio.so> ;
+	rdfs:seeAlso <controlfreak.ttl> .
+
+<urn:mbp143-audio:mozart>
+	a lv2:Plugin ;
+	lv2:binary <mbp143-audio.so> ;
+	rdfs:seeAlso <mozart.ttl> .
+
+<urn:mbp143-audio:dualband>
+	a lv2:Plugin ;
+	lv2:binary <mbp143-audio.so> ;
+	rdfs:seeAlso <dualband.ttl> .
+
+<urn:mbp143-audio:buzzkill>
+	a lv2:Plugin ;
+	lv2:binary <mbp143-audio.so> ;
+	rdfs:seeAlso <buzzkill.ttl> .
+
+<urn:mbp143-audio:loudness>
+	a lv2:Plugin ;
+	lv2:binary <mbp143-audio.so> ;
+	rdfs:seeAlso <loudness.ttl> .

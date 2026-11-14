@@ -1,0 +1,23 @@
+[package]
+name = "mbp143-audio-dsp"
+description = "The dynamics blocks of the MacBookPro14,3 speaker graph"
+authors.workspace = true
+license.workspace = true
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+publish.workspace = true
+readme = "README.md"
+keywords = ["audio", "dsp", "macbook"]
+categories = ["multimedia::audio"]
+
+[lib]
+name = "dsp"
+
+[features]
+# Inspection and state injection for tests: per-sample traces, forced
+# coefficients and gains, set state.
+internals = []
+
+[dev-dependencies]
+mbp143-audio-dsp = { path = ".", features = ["internals"] }

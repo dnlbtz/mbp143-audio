@@ -1,0 +1,22 @@
+# SPDX-License-Identifier: MIT
+#
+# dsp:  the six blocks' signal processing, as plain Rust
+# lv2:  the same blocks as LV2 plugins, the bundle the graph loads
+
+[workspace]
+members = ["dsp", "lv2"]
+resolver = "2"
+
+[workspace.package]
+authors = ["Daniel Betz <dnlbtz@gmail.com>"]
+license = "MIT"
+version = "1.0.0"
+edition = "2021"
+repository = "https://github.com/dnlbtz/mbp143-audio"
+readme = "README.md"
+# installed by make or a package, not from crates.io
+publish = false
+
+[profile.release]
+opt-level = 3
+lto = "thin"

@@ -1,0 +1,1723 @@
+{
+  "node.description": "MacBook Pro 14,3 Speakers",
+  "media.name": "MacBook Pro 14,3 Speakers",
+  "filter.graph": {
+    "nodes": [
+      {
+        "type": "builtin",
+        "name": "headroom0",
+        "label": "linear",
+        "control": {
+          "Mult": 1.0,
+          "Add": 0.0
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "headroom1",
+        "label": "linear",
+        "control": {
+          "Mult": 1.0,
+          "Add": 0.0
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f0c0b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.991295576261,
+              "b1": -1.98259115252,
+              "b2": 0.991295576261,
+              "a0": 1.0,
+              "a1": -1.98252675857,
+              "a2": 0.982655546479
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f0c1b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.991295576261,
+              "b1": -1.98259115252,
+              "b2": 0.991295576261,
+              "a0": 1.0,
+              "a1": -1.98252675857,
+              "a2": 0.982655546479
+            }
+          ]
+        }
+      },
+      {
+        "type": "lv2",
+        "name": "f1mozartCompressor",
+        "plugin": "urn:mbp143-audio:mozart"
+      },
+      {
+        "type": "lv2",
+        "name": "f2loudness",
+        "plugin": "urn:mbp143-audio:loudness"
+      },
+      {
+        "type": "builtin",
+        "name": "f3c0b31",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.48718684468,
+              "b1": -2.23495414181,
+              "b2": 0.865847394424,
+              "a0": 1.0,
+              "a1": -1.38837243401,
+              "a2": 0.506452531312
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f3c1b31",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.48718684468,
+              "b1": -2.23495414181,
+              "b2": 0.865847394424,
+              "a0": 1.0,
+              "a1": -1.38837243401,
+              "a2": 0.506452531312
+            }
+          ]
+        }
+      },
+      {
+        "type": "lv2",
+        "name": "f4mozartCompressorDualBand",
+        "plugin": "urn:mbp143-audio:dualband"
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.06126262819,
+              "b1": -0.265605227819,
+              "b2": 0.641733479751,
+              "a0": 1.0,
+              "a1": -0.265605227819,
+              "a2": 0.702996107939
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b1",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.104518243244,
+              "b1": -0.195652271716,
+              "b2": 0.0916271064768,
+              "a0": 1.0,
+              "a1": -1.95874156818,
+              "a2": 0.959234646188
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b2",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.976450697098,
+              "b1": -1.90818960837,
+              "b2": 0.942106589718,
+              "a0": 1.0,
+              "a1": -1.90818960837,
+              "a2": 0.918557286816
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b3",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.15916131137,
+              "b1": -1.86183918965,
+              "b2": 0.749019338098,
+              "a0": 1.0,
+              "a1": -1.86183918965,
+              "a2": 0.908180649463
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b4",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.919659529707,
+              "b1": -1.59612123539,
+              "b2": 0.758213709675,
+              "a0": 1.0,
+              "a1": -1.59612123539,
+              "a2": 0.677873239382
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b5",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.939317551763,
+              "b1": -0.697850371122,
+              "b2": 0.872574241326,
+              "a0": 1.0,
+              "a1": -0.697850371122,
+              "a2": 0.811891793089
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b6",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.11300289826,
+              "b1": -1.17944021332,
+              "b2": 0.684026270027,
+              "a0": 1.0,
+              "a1": -1.17944021332,
+              "a2": 0.797029168287
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b7",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.818626610784,
+              "b1": 1.0123070983,
+              "b2": 0.733557992231,
+              "a0": 1.0,
+              "a1": 1.0123070983,
+              "a2": 0.552184603015
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b8",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.964385790639,
+              "b1": -1.41025141223,
+              "b2": 0.750821048308,
+              "a0": 1.0,
+              "a1": -1.41025141223,
+              "a2": 0.715206838947
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b9",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.999408878043,
+              "b1": -1.99370075624,
+              "b2": 0.994842914794,
+              "a0": 1.0,
+              "a1": -1.99370075624,
+              "a2": 0.994251792837
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b10",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.996727675567,
+              "b1": -1.94921961182,
+              "b2": 0.971451481856,
+              "a0": 1.0,
+              "a1": -1.94921961182,
+              "a2": 0.968179157424
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b11",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.0,
+              "b1": -1.99072723227,
+              "b2": 0.991042981095,
+              "a0": 1.0,
+              "a1": -1.99072723227,
+              "a2": 0.991042981095
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b12",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.00082155002,
+              "b1": -1.99372575275,
+              "b2": 0.994251929845,
+              "a0": 1.0,
+              "a1": -1.99372575275,
+              "a2": 0.99507347987
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b13",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.0016466683,
+              "b1": -1.97622199855,
+              "b2": 0.980882256423,
+              "a0": 1.0,
+              "a1": -1.97622199855,
+              "a2": 0.982528924725
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b14",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.832827819584,
+              "b1": -0.154499385277,
+              "b2": 0.0223698014207,
+              "a0": 1.0,
+              "a1": -0.154499385277,
+              "a2": -0.144802378996
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c0b15",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.22932227201,
+              "b1": 1.12756693206,
+              "b2": 0.320951465002,
+              "a0": 1.0,
+              "a1": 1.25391594093,
+              "a2": 0.423924728138
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.06126262819,
+              "b1": -0.265605227819,
+              "b2": 0.641733479751,
+              "a0": 1.0,
+              "a1": -0.265605227819,
+              "a2": 0.702996107939
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b1",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.104518243244,
+              "b1": -0.195652271716,
+              "b2": 0.0916271064768,
+              "a0": 1.0,
+              "a1": -1.95874156818,
+              "a2": 0.959234646188
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b2",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.976450697098,
+              "b1": -1.90818960837,
+              "b2": 0.942106589718,
+              "a0": 1.0,
+              "a1": -1.90818960837,
+              "a2": 0.918557286816
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b3",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.15916131137,
+              "b1": -1.86183918965,
+              "b2": 0.749019338098,
+              "a0": 1.0,
+              "a1": -1.86183918965,
+              "a2": 0.908180649463
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b4",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.919659529707,
+              "b1": -1.59612123539,
+              "b2": 0.758213709675,
+              "a0": 1.0,
+              "a1": -1.59612123539,
+              "a2": 0.677873239382
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b5",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.939317551763,
+              "b1": -0.697850371122,
+              "b2": 0.872574241326,
+              "a0": 1.0,
+              "a1": -0.697850371122,
+              "a2": 0.811891793089
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b6",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.11300289826,
+              "b1": -1.17944021332,
+              "b2": 0.684026270027,
+              "a0": 1.0,
+              "a1": -1.17944021332,
+              "a2": 0.797029168287
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b7",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.818626610784,
+              "b1": 1.0123070983,
+              "b2": 0.733557992231,
+              "a0": 1.0,
+              "a1": 1.0123070983,
+              "a2": 0.552184603015
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b8",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.964385790639,
+              "b1": -1.41025141223,
+              "b2": 0.750821048308,
+              "a0": 1.0,
+              "a1": -1.41025141223,
+              "a2": 0.715206838947
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b9",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.999408878043,
+              "b1": -1.99370075624,
+              "b2": 0.994842914794,
+              "a0": 1.0,
+              "a1": -1.99370075624,
+              "a2": 0.994251792837
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b10",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.996727675567,
+              "b1": -1.94921961182,
+              "b2": 0.971451481856,
+              "a0": 1.0,
+              "a1": -1.94921961182,
+              "a2": 0.968179157424
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b11",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.0,
+              "b1": -1.99072723227,
+              "b2": 0.991042981095,
+              "a0": 1.0,
+              "a1": -1.99072723227,
+              "a2": 0.991042981095
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b12",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.00082155002,
+              "b1": -1.99372575275,
+              "b2": 0.994251929845,
+              "a0": 1.0,
+              "a1": -1.99372575275,
+              "a2": 0.99507347987
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b13",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.0016466683,
+              "b1": -1.97622199855,
+              "b2": 0.980882256423,
+              "a0": 1.0,
+              "a1": -1.97622199855,
+              "a2": 0.982528924725
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b14",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.832827819584,
+              "b1": -0.154499385277,
+              "b2": 0.0223698014207,
+              "a0": 1.0,
+              "a1": -0.154499385277,
+              "a2": -0.144802378996
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f5c1b15",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 1.22932227201,
+              "b1": 1.12756693206,
+              "b2": 0.320951465002,
+              "a0": 1.0,
+              "a1": 1.25391594093,
+              "a2": 0.423924728138
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f6c0gain",
+        "label": "linear",
+        "control": {
+          "Mult": 1.188502,
+          "Add": 0.0
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f6c1gain",
+        "label": "linear",
+        "control": {
+          "Mult": 1.188502,
+          "Add": 0.0
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.882766515657,
+              "b1": -1.76553303131,
+              "b2": 0.882766515657,
+              "a0": 1.0,
+              "a1": -1.75363047307,
+              "a2": 0.77743558956
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b1",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.956229136715,
+              "b1": -1.78843047641,
+              "b2": 0.903516180976,
+              "a0": 1.0,
+              "a1": -1.78843047641,
+              "a2": 0.859745317691
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b2",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.869593214017,
+              "b1": 0.48247169533,
+              "b2": 0.712545200302,
+              "a0": 1.0,
+              "a1": 0.48247169533,
+              "a2": 0.582138414319
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b3",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.973773290031,
+              "b1": -1.7052595435,
+              "b2": 0.86807064796,
+              "a0": 1.0,
+              "a1": -1.7052595435,
+              "a2": 0.84184393799
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b4",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.98700284542,
+              "b1": -1.49992348098,
+              "b2": 0.909063898616,
+              "a0": 1.0,
+              "a1": -1.49992348098,
+              "a2": 0.896066744036
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b5",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.96373458911,
+              "b1": -0.0436699181158,
+              "b2": 0.787918296202,
+              "a0": 1.0,
+              "a1": -0.0436699181158,
+              "a2": 0.751652885312
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b6",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.930169251322,
+              "b1": -0.702158250931,
+              "b2": 0.591626737614,
+              "a0": 1.0,
+              "a1": -0.702158250931,
+              "a2": 0.521795988936
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c0b8",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.931725205736,
+              "b1": -1.86345041147,
+              "b2": 0.931725205736,
+              "a0": 1.0,
+              "a1": -1.85944923029,
+              "a2": 0.867451592652
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.882766515657,
+              "b1": -1.76553303131,
+              "b2": 0.882766515657,
+              "a0": 1.0,
+              "a1": -1.75363047307,
+              "a2": 0.77743558956
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b1",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.956229136715,
+              "b1": -1.78843047641,
+              "b2": 0.903516180976,
+              "a0": 1.0,
+              "a1": -1.78843047641,
+              "a2": 0.859745317691
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b2",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.869593214017,
+              "b1": 0.48247169533,
+              "b2": 0.712545200302,
+              "a0": 1.0,
+              "a1": 0.48247169533,
+              "a2": 0.582138414319
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b3",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.973773290031,
+              "b1": -1.7052595435,
+              "b2": 0.86807064796,
+              "a0": 1.0,
+              "a1": -1.7052595435,
+              "a2": 0.84184393799
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b4",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.98700284542,
+              "b1": -1.49992348098,
+              "b2": 0.909063898616,
+              "a0": 1.0,
+              "a1": -1.49992348098,
+              "a2": 0.896066744036
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b5",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.96373458911,
+              "b1": -0.0436699181158,
+              "b2": 0.787918296202,
+              "a0": 1.0,
+              "a1": -0.0436699181158,
+              "a2": 0.751652885312
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b6",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.930169251322,
+              "b1": -0.702158250931,
+              "b2": 0.591626737614,
+              "a0": 1.0,
+              "a1": -0.702158250931,
+              "a2": 0.521795988936
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f8c1b8",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.931725205736,
+              "b1": -1.86345041147,
+              "b2": 0.931725205736,
+              "a0": 1.0,
+              "a1": -1.85944923029,
+              "a2": 0.867451592652
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.00624712296789,
+              "b1": 0.0124942459358,
+              "b2": 0.00624712296789,
+              "a0": 1.0,
+              "a1": -1.74734991602,
+              "a2": 0.772338407887
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b1",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.999294571206,
+              "b1": -1.97685209675,
+              "b2": 0.982484020872,
+              "a0": 1.0,
+              "a1": -1.97685209675,
+              "a2": 0.981778592078
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b2",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.993348380335,
+              "b1": -1.95199163239,
+              "b2": 0.970603647618,
+              "a0": 1.0,
+              "a1": -1.95199163239,
+              "a2": 0.963952027952
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b3",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.00978255377183,
+              "b1": 0.0195651075437,
+              "b2": 0.00978255377183,
+              "a0": 1.0,
+              "a1": -1.6808789717,
+              "a2": 0.720009186787
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b4",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.987790602519,
+              "b1": -1.88607796232,
+              "b2": 0.928598911287,
+              "a0": 1.0,
+              "a1": -1.88607796232,
+              "a2": 0.916389513806
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b5",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.997265704184,
+              "b1": -1.92995813935,
+              "b2": 0.952447961956,
+              "a0": 1.0,
+              "a1": -1.92995813935,
+              "a2": 0.94971366614
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c0b6",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.94068579838,
+              "b1": -1.74858492561,
+              "b2": 0.900891920555,
+              "a0": 1.0,
+              "a1": -1.74858492561,
+              "a2": 0.841577718935
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b0",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.00624712296789,
+              "b1": 0.0124942459358,
+              "b2": 0.00624712296789,
+              "a0": 1.0,
+              "a1": -1.74734991602,
+              "a2": 0.772338407887
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b1",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.999294571206,
+              "b1": -1.97685209675,
+              "b2": 0.982484020872,
+              "a0": 1.0,
+              "a1": -1.97685209675,
+              "a2": 0.981778592078
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b2",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.993348380335,
+              "b1": -1.95199163239,
+              "b2": 0.970603647618,
+              "a0": 1.0,
+              "a1": -1.95199163239,
+              "a2": 0.963952027952
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b3",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.00978255377183,
+              "b1": 0.0195651075437,
+              "b2": 0.00978255377183,
+              "a0": 1.0,
+              "a1": -1.6808789717,
+              "a2": 0.720009186787
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b4",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.987790602519,
+              "b1": -1.88607796232,
+              "b2": 0.928598911287,
+              "a0": 1.0,
+              "a1": -1.88607796232,
+              "a2": 0.916389513806
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b5",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.997265704184,
+              "b1": -1.92995813935,
+              "b2": 0.952447961956,
+              "a0": 1.0,
+              "a1": -1.92995813935,
+              "a2": 0.94971366614
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f9c1b6",
+        "label": "bq_raw",
+        "config": {
+          "coefficients": [
+            {
+              "rate": 44100,
+              "b0": 0.94068579838,
+              "b1": -1.74858492561,
+              "b2": 0.900891920555,
+              "a0": 1.0,
+              "a1": -1.74858492561,
+              "a2": 0.841577718935
+            }
+          ]
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f10c0delay",
+        "label": "delay",
+        "config": {
+          "max-delay": 0.01,
+          "latency": 0.004988662
+        },
+        "control": {
+          "Delay (s)": 0.005017007
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f10c1delay",
+        "label": "delay",
+        "config": {
+          "max-delay": 0.01,
+          "latency": 0.004988662
+        },
+        "control": {
+          "Delay (s)": 0.005017007
+        }
+      },
+      {
+        "type": "lv2",
+        "name": "f11buzzKill",
+        "plugin": "urn:mbp143-audio:buzzkill"
+      },
+      {
+        "type": "lv2",
+        "name": "f12controlFreak",
+        "plugin": "urn:mbp143-audio:controlfreak"
+      },
+      {
+        "type": "lv2",
+        "name": "f13controlFreak",
+        "plugin": "urn:mbp143-audio:controlfreak"
+      },
+      {
+        "type": "lv2",
+        "name": "f14thermalSpeakerProtection4ch",
+        "plugin": "urn:mbp143-audio:thermal"
+      },
+      {
+        "type": "builtin",
+        "name": "f15c0delay",
+        "label": "delay",
+        "config": {
+          "max-delay": 0.01
+        },
+        "control": {
+          "Delay (s)": 9.6372e-05
+        }
+      },
+      {
+        "type": "builtin",
+        "name": "f15c1delay",
+        "label": "delay",
+        "config": {
+          "max-delay": 0.01
+        },
+        "control": {
+          "Delay (s)": 9.6372e-05
+        }
+      }
+    ],
+    "links": [
+      {
+        "output": "headroom0:Out",
+        "input": "f0c0b0:In"
+      },
+      {
+        "output": "headroom1:Out",
+        "input": "f0c1b0:In"
+      },
+      {
+        "output": "f0c0b0:Out",
+        "input": "f1mozartCompressor:in_l"
+      },
+      {
+        "output": "f0c1b0:Out",
+        "input": "f1mozartCompressor:in_r"
+      },
+      {
+        "output": "f1mozartCompressor:out_l",
+        "input": "f2loudness:in_l"
+      },
+      {
+        "output": "f1mozartCompressor:out_r",
+        "input": "f2loudness:in_r"
+      },
+      {
+        "output": "f2loudness:out_l",
+        "input": "f3c0b31:In"
+      },
+      {
+        "output": "f2loudness:out_r",
+        "input": "f3c1b31:In"
+      },
+      {
+        "output": "f3c0b31:Out",
+        "input": "f4mozartCompressorDualBand:in_l"
+      },
+      {
+        "output": "f3c1b31:Out",
+        "input": "f4mozartCompressorDualBand:in_r"
+      },
+      {
+        "output": "f4mozartCompressorDualBand:out_l",
+        "input": "f5c0b0:In"
+      },
+      {
+        "output": "f5c0b0:Out",
+        "input": "f5c0b1:In"
+      },
+      {
+        "output": "f5c0b1:Out",
+        "input": "f5c0b2:In"
+      },
+      {
+        "output": "f5c0b2:Out",
+        "input": "f5c0b3:In"
+      },
+      {
+        "output": "f5c0b3:Out",
+        "input": "f5c0b4:In"
+      },
+      {
+        "output": "f5c0b4:Out",
+        "input": "f5c0b5:In"
+      },
+      {
+        "output": "f5c0b5:Out",
+        "input": "f5c0b6:In"
+      },
+      {
+        "output": "f5c0b6:Out",
+        "input": "f5c0b7:In"
+      },
+      {
+        "output": "f5c0b7:Out",
+        "input": "f5c0b8:In"
+      },
+      {
+        "output": "f5c0b8:Out",
+        "input": "f5c0b9:In"
+      },
+      {
+        "output": "f5c0b9:Out",
+        "input": "f5c0b10:In"
+      },
+      {
+        "output": "f5c0b10:Out",
+        "input": "f5c0b11:In"
+      },
+      {
+        "output": "f5c0b11:Out",
+        "input": "f5c0b12:In"
+      },
+      {
+        "output": "f5c0b12:Out",
+        "input": "f5c0b13:In"
+      },
+      {
+        "output": "f5c0b13:Out",
+        "input": "f5c0b14:In"
+      },
+      {
+        "output": "f5c0b14:Out",
+        "input": "f5c0b15:In"
+      },
+      {
+        "output": "f4mozartCompressorDualBand:out_r",
+        "input": "f5c1b0:In"
+      },
+      {
+        "output": "f5c1b0:Out",
+        "input": "f5c1b1:In"
+      },
+      {
+        "output": "f5c1b1:Out",
+        "input": "f5c1b2:In"
+      },
+      {
+        "output": "f5c1b2:Out",
+        "input": "f5c1b3:In"
+      },
+      {
+        "output": "f5c1b3:Out",
+        "input": "f5c1b4:In"
+      },
+      {
+        "output": "f5c1b4:Out",
+        "input": "f5c1b5:In"
+      },
+      {
+        "output": "f5c1b5:Out",
+        "input": "f5c1b6:In"
+      },
+      {
+        "output": "f5c1b6:Out",
+        "input": "f5c1b7:In"
+      },
+      {
+        "output": "f5c1b7:Out",
+        "input": "f5c1b8:In"
+      },
+      {
+        "output": "f5c1b8:Out",
+        "input": "f5c1b9:In"
+      },
+      {
+        "output": "f5c1b9:Out",
+        "input": "f5c1b10:In"
+      },
+      {
+        "output": "f5c1b10:Out",
+        "input": "f5c1b11:In"
+      },
+      {
+        "output": "f5c1b11:Out",
+        "input": "f5c1b12:In"
+      },
+      {
+        "output": "f5c1b12:Out",
+        "input": "f5c1b13:In"
+      },
+      {
+        "output": "f5c1b13:Out",
+        "input": "f5c1b14:In"
+      },
+      {
+        "output": "f5c1b14:Out",
+        "input": "f5c1b15:In"
+      },
+      {
+        "output": "f5c0b15:Out",
+        "input": "f6c0gain:In"
+      },
+      {
+        "output": "f5c1b15:Out",
+        "input": "f6c1gain:In"
+      },
+      {
+        "output": "f6c0gain:Out",
+        "input": "f8c0b0:In"
+      },
+      {
+        "output": "f8c0b0:Out",
+        "input": "f8c0b1:In"
+      },
+      {
+        "output": "f8c0b1:Out",
+        "input": "f8c0b2:In"
+      },
+      {
+        "output": "f8c0b2:Out",
+        "input": "f8c0b3:In"
+      },
+      {
+        "output": "f8c0b3:Out",
+        "input": "f8c0b4:In"
+      },
+      {
+        "output": "f8c0b4:Out",
+        "input": "f8c0b5:In"
+      },
+      {
+        "output": "f8c0b5:Out",
+        "input": "f8c0b6:In"
+      },
+      {
+        "output": "f8c0b6:Out",
+        "input": "f8c0b8:In"
+      },
+      {
+        "output": "f6c1gain:Out",
+        "input": "f8c1b0:In"
+      },
+      {
+        "output": "f8c1b0:Out",
+        "input": "f8c1b1:In"
+      },
+      {
+        "output": "f8c1b1:Out",
+        "input": "f8c1b2:In"
+      },
+      {
+        "output": "f8c1b2:Out",
+        "input": "f8c1b3:In"
+      },
+      {
+        "output": "f8c1b3:Out",
+        "input": "f8c1b4:In"
+      },
+      {
+        "output": "f8c1b4:Out",
+        "input": "f8c1b5:In"
+      },
+      {
+        "output": "f8c1b5:Out",
+        "input": "f8c1b6:In"
+      },
+      {
+        "output": "f8c1b6:Out",
+        "input": "f8c1b8:In"
+      },
+      {
+        "output": "f6c0gain:Out",
+        "input": "f9c0b0:In"
+      },
+      {
+        "output": "f9c0b0:Out",
+        "input": "f9c0b1:In"
+      },
+      {
+        "output": "f9c0b1:Out",
+        "input": "f9c0b2:In"
+      },
+      {
+        "output": "f9c0b2:Out",
+        "input": "f9c0b3:In"
+      },
+      {
+        "output": "f9c0b3:Out",
+        "input": "f9c0b4:In"
+      },
+      {
+        "output": "f9c0b4:Out",
+        "input": "f9c0b5:In"
+      },
+      {
+        "output": "f9c0b5:Out",
+        "input": "f9c0b6:In"
+      },
+      {
+        "output": "f6c1gain:Out",
+        "input": "f9c1b0:In"
+      },
+      {
+        "output": "f9c1b0:Out",
+        "input": "f9c1b1:In"
+      },
+      {
+        "output": "f9c1b1:Out",
+        "input": "f9c1b2:In"
+      },
+      {
+        "output": "f9c1b2:Out",
+        "input": "f9c1b3:In"
+      },
+      {
+        "output": "f9c1b3:Out",
+        "input": "f9c1b4:In"
+      },
+      {
+        "output": "f9c1b4:Out",
+        "input": "f9c1b5:In"
+      },
+      {
+        "output": "f9c1b5:Out",
+        "input": "f9c1b6:In"
+      },
+      {
+        "output": "f8c0b8:Out",
+        "input": "f10c0delay:In"
+      },
+      {
+        "output": "f8c1b8:Out",
+        "input": "f10c1delay:In"
+      },
+      {
+        "output": "f9c0b6:Out",
+        "input": "f11buzzKill:in_l"
+      },
+      {
+        "output": "f9c1b6:Out",
+        "input": "f11buzzKill:in_r"
+      },
+      {
+        "output": "f10c0delay:Out",
+        "input": "f12controlFreak:in_l"
+      },
+      {
+        "output": "f10c1delay:Out",
+        "input": "f12controlFreak:in_r"
+      },
+      {
+        "output": "f11buzzKill:out_l",
+        "input": "f13controlFreak:in_l"
+      },
+      {
+        "output": "f11buzzKill:out_r",
+        "input": "f13controlFreak:in_r"
+      },
+      {
+        "output": "f12controlFreak:out_l",
+        "input": "f14thermalSpeakerProtection4ch:in_tl"
+      },
+      {
+        "output": "f12controlFreak:out_r",
+        "input": "f14thermalSpeakerProtection4ch:in_tr"
+      },
+      {
+        "output": "f13controlFreak:out_l",
+        "input": "f14thermalSpeakerProtection4ch:in_wl"
+      },
+      {
+        "output": "f13controlFreak:out_r",
+        "input": "f14thermalSpeakerProtection4ch:in_wr"
+      },
+      {
+        "output": "f14thermalSpeakerProtection4ch:out_tl",
+        "input": "f15c0delay:In"
+      },
+      {
+        "output": "f14thermalSpeakerProtection4ch:out_tr",
+        "input": "f15c1delay:In"
+      }
+    ],
+    "inputs": [
+      "headroom0:In",
+      "headroom1:In"
+    ],
+    "outputs": [
+      "f15c0delay:Out",
+      "f15c1delay:Out",
+      "f14thermalSpeakerProtection4ch:out_wl",
+      "f14thermalSpeakerProtection4ch:out_wr"
+    ],
+    "capture.volumes": [
+      {
+        "control": "f2loudness:volume_l",
+        "min": 0.0,
+        "max": 1.0,
+        "scale": "linear"
+      },
+      {
+        "control": "f2loudness:volume_r",
+        "min": 0.0,
+        "max": 1.0,
+        "scale": "linear"
+      }
+    ]
+  },
+  "capture.props": {
+    "node.name": "audio_effect.mbp143-speakers",
+    "media.class": "Audio/Sink",
+    "audio.channels": 2,
+    "audio.position": [
+      "FL",
+      "FR"
+    ],
+    "node.force-rate": 44100,
+    "device.api": "dsp",
+    "node.virtual": false,
+    "priority.session": 2100,
+    "state.default-volume": 0.125,
+    "device.icon-name": "audio-speakers",
+    "session.suspend-timeout-seconds": 0
+  },
+  "playback.props": {
+    "node.name": "effect_output.mbp143-speakers",
+    "node.description": "MacBook Pro 14,3 Speakers DSP Out",
+    "target.object": "alsa_output.pci-0000_00_1f.3.analog-surround-40",
+    "node.dont-fallback": true,
+    "node.passive": true,
+    "audio.channels": 4,
+    "audio.position": [
+      "FL",
+      "FR",
+      "RL",
+      "RR"
+    ],
+    "node.force-rate": 44100,
+    "session.suspend-timeout-seconds": 0
+  }
+}

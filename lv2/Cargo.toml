@@ -1,0 +1,20 @@
+[package]
+name = "mbp143-audio-lv2"
+description = "MacBookPro14,3 speaker dynamics as LV2 plugins"
+authors.workspace = true
+license.workspace = true
+version.workspace = true
+edition.workspace = true
+repository.workspace = true
+publish.workspace = true
+readme = "README.md"
+keywords = ["lv2", "audio", "plugin", "macbook"]
+categories = ["multimedia::audio"]
+
+[dependencies]
+lv2 = "0.6.0"
+mbp143-audio-dsp = { path = "../dsp" }
+
+[lib]
+crate-type = ["cdylib"]
+name = "mbp143audio"

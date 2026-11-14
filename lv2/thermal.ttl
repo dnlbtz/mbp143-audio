@@ -1,0 +1,81 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:mbp143-audio:thermal>
+	a lv2:Plugin, lv2:DynamicsPlugin ;
+	doap:name "MacBook Pro 14,3 thermal speaker protection" ;
+	doap:license <https://spdx.org/licenses/MIT> ;
+	lv2:project <urn:mbp143-audio> ;
+	lv2:minorVersion 0 ;
+	lv2:microVersion 0 ;
+	rdfs:comment """Thermal speaker protection from the MacBookPro14,3 speaker graph. Four
+thermal models, one per speaker, each two parallel RC poles fed the
+electrical power P = mean((9*x)^2)/R_e over 5 ms blocks. The gain is
+sqrt((threshold - ambient - T_slow_of_the_output) / (T_fast_of_the_input + 1)),
+followed down in 800 ms and up in 20 s, smoothed by a 20 Hz Butterworth, and
+clamped to 0.1 past threshold + margin = 145 C. The two tweeters and the two
+woofers each share one gain. Latency 0, in place. No bypass. The input is
+clipped at full scale. A new instance starts at ambient temperature; the
+heat is kept when the host deactivates the plugin, and a pause cools it.
+
+Channel order is the TDM slot order of davidjo's snd_hda_macbookpro: tweeter L,
+tweeter R, woofer L, woofer R.""" ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:port [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 0 ; lv2:symbol "in_tl" ; lv2:name "Tweeter L in"
+	] , [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 1 ; lv2:symbol "in_tr" ; lv2:name "Tweeter R in"
+	] , [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 2 ; lv2:symbol "in_wl" ; lv2:name "Woofer L in"
+	] , [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 3 ; lv2:symbol "in_wr" ; lv2:name "Woofer R in"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 4 ; lv2:symbol "out_tl" ; lv2:name "Tweeter L out"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 5 ; lv2:symbol "out_tr" ; lv2:name "Tweeter R out"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 6 ; lv2:symbol "out_wl" ; lv2:name "Woofer L out"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 7 ; lv2:symbol "out_wr" ; lv2:name "Woofer R out"
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 8 ; lv2:symbol "gain_tl" ; lv2:name "Gain tweeter L" ;
+		lv2:default 1.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 9 ; lv2:symbol "gain_tr" ; lv2:name "Gain tweeter R" ;
+		lv2:default 1.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 10 ; lv2:symbol "gain_wl" ; lv2:name "Gain woofer L" ;
+		lv2:default 1.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 11 ; lv2:symbol "gain_wr" ; lv2:name "Gain woofer R" ;
+		lv2:default 1.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 12 ; lv2:symbol "temp_tl" ; lv2:name "Temperature C tweeter L" ;
+		lv2:default 50.0 ; lv2:minimum 0.0 ; lv2:maximum 300.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 13 ; lv2:symbol "temp_tr" ; lv2:name "Temperature C tweeter R" ;
+		lv2:default 50.0 ; lv2:minimum 0.0 ; lv2:maximum 300.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 14 ; lv2:symbol "temp_wl" ; lv2:name "Temperature C woofer L" ;
+		lv2:default 50.0 ; lv2:minimum 0.0 ; lv2:maximum 300.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 15 ; lv2:symbol "temp_wr" ; lv2:name "Temperature C woofer R" ;
+		lv2:default 50.0 ; lv2:minimum 0.0 ; lv2:maximum 300.0
+	] .

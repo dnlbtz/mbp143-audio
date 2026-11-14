@@ -1,0 +1,84 @@
+name: Release
+
+# A tag v<version> builds the Arch package and the Ubuntu 26.04 .deb and
+# attaches both to a release of that name.
+
+on:
+  push:
+    tags: ['v[0-9]*']
+
+permissions:
+  contents: write
+
+jobs:
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:base-devel
+    steps:
+      - name: Tools
+        run: pacman -Syu --noconfirm --needed git rust
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # the PKGBUILD's pkgver() takes the version from the tag
+      - name: The tag is the version in Cargo.toml
+        run: |
+          version=$(sed -n '/^\[workspace.package\]/,/^\[/s/^version = "\(.*\)"/\1/p' Cargo.toml)
+          test "v$version" = "$GITHUB_REF_NAME"
+      - name: Package
+        # makepkg does not run as root. The PKGBUILD clones a copy of this
+        # checkout at the tag, so that a private repository or a fork builds
+        # too. --nodeps: the build links against none of the run-time
+        # dependencies.
+        run: |
+          useradd -m builder
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git clone --mirror "$GITHUB_WORKSPACE" /home/builder/source.git
+          install -d /home/builder/pkg
+          install -m 644 packaging/arch/PKGBUILD packaging/arch/mbp143-audio.install /home/builder/pkg/
+          sed -i "s|^source=.*|source=(\"\$pkgname::git+file:///home/builder/source.git#tag=$GITHUB_REF_NAME\")|" /home/builder/pkg/PKGBUILD
+          chown -R builder /home/builder
+          su builder -c 'cd ~/pkg && makepkg --nodeps'
+          mkdir out
+          cp /home/builder/pkg/mbp143-audio-[0-9]*.pkg.tar.zst out/
+      - uses: actions/upload-artifact@v7
+        with:
+          name: arch
+          path: out/*.pkg.tar.zst
+          if-no-files-found: error
+
+  deb:
+    runs-on: ubuntu-latest
+    container: ubuntu:26.04
+    steps:
+      - name: Tools
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends ca-certificates cargo make git dpkg-dev
+        env:
+          DEBIAN_FRONTEND: noninteractive
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # buildDeb takes the version from the tag
+      - name: Package
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          mkdir out
+          packaging/debian/buildDeb out
+      - uses: actions/upload-artifact@v7
+        with:
+          name: deb
+          path: out/*.deb
+          if-no-files-found: error
+
+  release:
+    needs: [arch, deb]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          path: out
+          merge-multiple: true
+      - name: Release
+        run: gh release create "$GITHUB_REF_NAME" out/* --repo "$GITHUB_REPOSITORY" --title "$GITHUB_REF_NAME" --verify-tag --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}

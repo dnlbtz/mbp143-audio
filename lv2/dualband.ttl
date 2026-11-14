@@ -1,0 +1,45 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:mbp143-audio:dualband>
+	a lv2:Plugin, lv2:CompressorPlugin ;
+	doap:name "MacBook Pro 14,3 DualBand compressor" ;
+	doap:license <https://spdx.org/licenses/MIT> ;
+	lv2:project <urn:mbp143-audio> ;
+	lv2:minorVersion 0 ;
+	lv2:microVersion 0 ;
+	rdfs:comment """The DualBand compressor from the MacBookPro14,3 speaker graph, on the
+common path. Two gain computers at sr/31 over a 400 Hz crossover of four
+first-order sections: the low band 3:1 from -18 dB, the high band 1.4:1 from
+-24 dB, both on a +6 dB make-up, 50 ms attack and 1250 ms release. The audio is
+never split: it is multiplied by the high band's gain, and four passes of
+out -= LP(out * w), w = 1 - (gLow/gHigh)^(1/4), bring the low end to the low
+band's gain. Latency 0.""" ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:port [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 0 ; lv2:symbol "in_l" ; lv2:name "In L"
+	] , [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 1 ; lv2:symbol "in_r" ; lv2:name "In R"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 2 ; lv2:symbol "out_l" ; lv2:name "Out L"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 3 ; lv2:symbol "out_r" ; lv2:name "Out R"
+	] , [
+		a lv2:ControlPort, lv2:InputPort ;
+		lv2:index 4 ; lv2:symbol "bypass" ; lv2:name "Bypass" ;
+		lv2:portProperty lv2:toggled ;
+		lv2:default 0.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 5 ; lv2:symbol "gain_low" ; lv2:name "Low band gain dB" ;
+		lv2:default 6.0 ; lv2:minimum -40.0 ; lv2:maximum 20.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 6 ; lv2:symbol "gain_high" ; lv2:name "High band gain dB" ;
+		lv2:default 6.0 ; lv2:minimum -40.0 ; lv2:maximum 20.0
+	] .

@@ -1,0 +1,57 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<urn:mbp143-audio:loudness>
+	a lv2:Plugin, lv2:AmplifierPlugin ;
+	doap:name "MacBook Pro 14,3 loudness and volume" ;
+	doap:license <https://spdx.org/licenses/MIT> ;
+	lv2:project <urn:mbp143-audio> ;
+	lv2:minorVersion 0 ;
+	lv2:microVersion 0 ;
+	rdfs:comment """Loudness from the MacBookPro14,3 speaker graph, after Mozart, with the
+speaker volume it applies. From the louder channel's volume G in dB: below
+-6 dB a low shelf at 300 Hz of 0.5*(-6-G)*scale dB and a high shelf at 2 kHz of
+0.15*(-6-G)*scale dB, scale = 1/sqrt((G/x0)^2k + 1), k 1.053574, x0 -35.7294
+(+10.56 and +3.17 dB at -36 dB). RBJ shelves with S = 1; on a volume change
+their coefficients glide with a 30 ms pole, and each channel's volume ramps with
+the same pole.
+
+volume_l and volume_r are linear gains: the filter-chain's capture.volumes
+hands the sink's channel volumes to them. Bypass drops the shelves but keeps
+the volume.""" ;
+	lv2:optionalFeature lv2:hardRTCapable ;
+	lv2:port [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 0 ; lv2:symbol "in_l" ; lv2:name "In L"
+	] , [
+		a lv2:AudioPort, lv2:InputPort ;
+		lv2:index 1 ; lv2:symbol "in_r" ; lv2:name "In R"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 2 ; lv2:symbol "out_l" ; lv2:name "Out L"
+	] , [
+		a lv2:AudioPort, lv2:OutputPort ;
+		lv2:index 3 ; lv2:symbol "out_r" ; lv2:name "Out R"
+	] , [
+		a lv2:ControlPort, lv2:InputPort ;
+		lv2:index 4 ; lv2:symbol "volume_l" ; lv2:name "Volume L, linear" ;
+		lv2:default 1.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:InputPort ;
+		lv2:index 5 ; lv2:symbol "volume_r" ; lv2:name "Volume R, linear" ;
+		lv2:default 1.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:InputPort ;
+		lv2:index 6 ; lv2:symbol "bypass" ; lv2:name "Bypass the shelves" ;
+		lv2:portProperty lv2:toggled ;
+		lv2:default 0.0 ; lv2:minimum 0.0 ; lv2:maximum 1.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 7 ; lv2:symbol "low_db" ; lv2:name "Low shelf dB" ;
+		lv2:default 0.0 ; lv2:minimum 0.0 ; lv2:maximum 20.0
+	] , [
+		a lv2:ControlPort, lv2:OutputPort ;
+		lv2:index 8 ; lv2:symbol "high_db" ; lv2:name "High shelf dB" ;
+		lv2:default 0.0 ; lv2:minimum 0.0 ; lv2:maximum 20.0
+	] .

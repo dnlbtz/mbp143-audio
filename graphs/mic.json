@@ -1,0 +1,37 @@
+{
+  "node.description": "MacBook Pro 14,3 Microphone",
+  "media.name": "MacBook Pro 14,3 Microphone",
+  "filter.graph": {
+    "nodes": [
+      { "type": "builtin", "name": "preAmp0a", "label": "linear", "control": { "Mult": 1.0, "Add": 0.0 } },
+      { "type": "builtin", "name": "preAmp0b", "label": "linear", "control": { "Mult": 1.0, "Add": 0.0 } },
+      { "type": "builtin", "name": "preAmp1a", "label": "linear", "control": { "Mult": 1.0, "Add": 0.0 } },
+      { "type": "builtin", "name": "preAmp1b", "label": "linear", "control": { "Mult": 1.0, "Add": 0.0 } }
+    ],
+    "links": [
+      { "output": "preAmp0a:Out", "input": "preAmp0b:In" },
+      { "output": "preAmp1a:Out", "input": "preAmp1b:In" }
+    ],
+    "inputs": [ "preAmp0a:In", "preAmp1a:In" ],
+    "outputs": [ "preAmp0b:Out", "preAmp1b:Out" ]
+  },
+  "capture.props": {
+    "node.name": "audio_effect.mbp143-mic",
+    "node.description": "MacBook Pro 14,3 Microphone DSP In",
+    "target.object": "alsa_input.pci-0000_00_1f.3.analog-stereo",
+    "node.dont-fallback": true,
+    "node.passive": true,
+    "audio.channels": 2,
+    "audio.position": [ "FL", "FR" ]
+  },
+  "playback.props": {
+    "node.name": "effect_output.mbp143-mic",
+    "media.class": "Audio/Source",
+    "audio.channels": 2,
+    "audio.position": [ "FL", "FR" ],
+    "device.api": "dsp",
+    "node.virtual": false,
+    "priority.session": 2100,
+    "device.icon-name": "audio-input-microphone"
+  }
+}
