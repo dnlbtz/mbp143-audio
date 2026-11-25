@@ -10,7 +10,7 @@ license=('MIT')
 # pipewire-audio carries the LV2 filter-graph plugin. The kernel driver is
 # optional so that one installed without a package does not block this one.
 depends=('glibc' 'libgcc' 'pipewire' 'pipewire-audio' 'wireplumber')
-optdepends=('snd-hda-macbookpro-dkms-git: the kernel driver for the sound card')
+optdepends=('snd-hda-macbookpro-resume-dkms: the kernel driver for the sound card, with resume after hibernation and the headset mic')
 makedepends=('cargo' 'git')
 install=mbp143-audio.install
 source=("git+$url.git")

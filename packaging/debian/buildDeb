@@ -11,7 +11,7 @@
 # the first build. Build it on the release it is for: the plugin links that
 # release's glibc. NOCHECK=1 skips the tests.
 #
-# Install on the Mac:  sudo apt install ./mbp143-audio_*.deb
+# Install on the MacBook Pro:  sudo apt install ./mbp143-audio_*.deb
 # then  systemctl --user restart pipewire pipewire-pulse wireplumber
 #
 # The version is the tag's (v1.0.0 -> 1.0.0), with +r<commits>.g<hash> past a
@@ -60,7 +60,7 @@ Architecture: $arch
 Maintainer: Daniel Betz <dnlbtz@gmail.com>
 Installed-Size: $(du -sk --exclude=DEBIAN "$root" | cut -f1)
 Depends: $libs, pipewire (>= 1.4), libspa-0.2-modules-extra, wireplumber (>= 0.5.8)
-Recommends: snd-hda-macbookpro-dkms
+Recommends: snd-hda-macbookpro-resume-dkms
 Section: sound
 Priority: optional
 Homepage: https://github.com/dnlbtz/mbp143-audio
@@ -74,7 +74,7 @@ Description: Audio DSP for the 15" MacBook Pro of 2017 (MacBookPro14,3)
  its PipeWire setting, which lets WirePlumber decide each program's
  access, applies there too.
  .
- Needs a driver for the Cirrus CS8409 codec (snd-hda-macbookpro-dkms).
+ Needs a driver for the Cirrus CS8409 codec (snd-hda-macbookpro-resume-dkms).
 CTRL
 
 cat > "$root/DEBIAN/postinst" <<'POST'

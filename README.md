@@ -49,7 +49,7 @@ for them.
   davidjo. It is not part of the Linux kernel. Until two fixes are merged
   there, install it from the fork at
   [github.com/dnlbtz/snd_hda_macbookpro](https://github.com/dnlbtz/snd_hda_macbookpro),
-  branch `offlineDkmsDeb`, which has packaging for Arch and Ubuntu. Without
+  branch `packaging`, which has packaging for Arch and Ubuntu. Without
   the fixes the speakers stay silent after a hibernation and the headset
   microphone does not work.
 - PipeWire 1.4 or later with its LV2 plugin (`pipewire-audio` on
@@ -253,7 +253,7 @@ That is the kernel driver, not this package.
 The kernel driver did not switch the amplifiers on again. davidjo's driver
 does not do that yet. Install the driver from
 [github.com/dnlbtz/snd_hda_macbookpro](https://github.com/dnlbtz/snd_hda_macbookpro),
-branch `offlineDkmsDeb`, which does.
+branch `packaging`, which does.
 
 ### The headset microphone is very quiet
 
