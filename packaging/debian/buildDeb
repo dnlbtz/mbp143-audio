@@ -70,7 +70,9 @@ Description: Audio DSP for the 15" MacBook Pro of 2017 (MacBookPro14,3)
  that follows the volume, and the limiters and thermal protection that keep
  the speakers safe. WirePlumber loads it for the built-in speakers and hides
  the raw sink behind it. A second graph raises the headset microphone to
- a usable level. On any other machine the package does nothing.
+ a usable level. On any other machine it leaves the sound alone; only
+ its PipeWire setting, which lets WirePlumber decide each program's
+ access, applies there too.
  .
  Needs a driver for the Cirrus CS8409 codec (snd-hda-macbookpro-dkms).
 CTRL

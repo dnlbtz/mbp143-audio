@@ -37,8 +37,10 @@ The MacBookPro14,3 only (15", 2017, Touch Bar):
 Everything in the graphs is this model's tuning: the EQ is for its speakers
 in its case, the thermal protection for the heat its speakers can take. The
 package looks for this model's sound card (Cirrus CS8409, subsystem
-`106b3900`) and does nothing on any other machine. Other MacBooks with a
-CS8409 have other speakers; this graph would be wrong for them.
+`106b3900`) and does nothing to sound on any other machine; only the
+access setting under "What changes on the machine" applies everywhere.
+Other MacBooks with a CS8409 have other speakers; this graph would be wrong
+for them.
 
 ## Requirements
 
@@ -50,8 +52,8 @@ CS8409 have other speakers; this graph would be wrong for them.
   branch `offlineDkmsDeb`, which has packaging for Arch and Ubuntu. Without
   the fixes the speakers stay silent after a hibernation and the headset
   microphone does not work.
-- PipeWire 1.4 or later with its LV2 plugin (`pipewire-audio` on Arch and
-  CachyOS, `libspa-0.2-modules-extra` on Ubuntu) and WirePlumber 0.5.8 or
+- PipeWire 1.4 or later with its LV2 plugin (`pipewire-audio` on
+  Arch/CachyOS, `libspa-0.2-modules-extra` on Ubuntu) and WirePlumber 0.5.8 or
   later.
 
 Tested on a MacBookPro14,3 with CachyOS, PipeWire 1.6.10 and WirePlumber
@@ -63,7 +65,7 @@ PipeWire 1.6.2, but it has not been tested on a 14,3 under Ubuntu yet.
 Install the kernel driver first. Then download the package from the
 [releases](https://github.com/dnlbtz/mbp143-audio/releases) and install it:
 
-    sudo pacman -U mbp143-audio-*.pkg.tar.zst      # Arch, CachyOS
+    sudo pacman -U mbp143-audio-*.pkg.tar.zst      # Arch/CachyOS
     sudo apt install ./mbp143-audio_*.deb          # Ubuntu 26.04
 
 Then restart the audio services, or log out and in:
@@ -76,7 +78,7 @@ this graph.
 
 ## Uninstall
 
-    sudo pacman -R mbp143-audio                    # Arch, CachyOS
+    sudo pacman -R mbp143-audio                    # Arch/CachyOS
     sudo apt remove mbp143-audio                   # Ubuntu 26.04
 
 Then restart the audio services, or log out and in:
@@ -113,10 +115,18 @@ use (marked `*`) and the node that connects it to the sound card:
   do not get the raw sink in their list of outputs, and no stream is
   connected to it for them. Anything played to the raw sink directly would
   reach the speakers around the crossover, the limiters and the thermal
-  protection. A program that makes its own connections (a patchbay,
-  `pw-link`) can still do that, because the raw sink's ports stay visible.
-  If the graph fails to load there is no speaker output at all, rather than
-  unprotected output.
+  protection. If the graph fails to load there is no speaker output at all,
+  rather than unprotected output.
+- PipeWire leaves each program's access to WirePlumber. By PipeWire's own
+  default a program gets full access the moment it connects, before
+  WirePlumber can hide the raw sink from it, so a program that makes its own
+  connections (a patchbay, `pw-link`) could still reach it. With the
+  package a program gets no access until WirePlumber has decided, and then
+  everything but the raw sink. This applies to every program, not only
+  audio ones, and it is the one setting that does not look for the
+  hardware: it applies on any machine the package is installed on. While
+  WirePlumber is not running, a program that starts cannot use PipeWire at
+  all.
 - A program that opens the sound card itself through ALSA (`aplay -D hw:0`,
   a music program set to its ALSA backend) goes around PipeWire and so
   around the graph too, at full level: the card has no volume of its own.
@@ -230,7 +240,7 @@ sound card's profile with the headphone jack and holds the raw sink at
 The speaker graph did not load. `journalctl --user -b -u wireplumber` says
 why. The usual cause is PipeWire's LV2 plugin missing
 (`libspa-0.2-modules-extra` on Ubuntu). `lv2ls | grep mbp143` should print
-six lines (`lv2ls` is in `lilv-tools` on Arch and CachyOS, `lilv-utils` on
+six lines (`lv2ls` is in `lilv-tools` on Arch/CachyOS, `lilv-utils` on
 Ubuntu); if it prints nothing, the package is not installed completely.
 
 ### No sound card at all
@@ -287,7 +297,8 @@ are built by `makepkg` in `packaging/arch` and by
 - `lv2/`: the six as LV2 plugins in one bundle (`lv2/README.md`).
 - `graphs/`: `speakers.json` and `mic.json`, the two graphs as WirePlumber
   loads them.
-- `conf/`: the WirePlumber rules and the script that go with the graphs.
+- `conf/`: the WirePlumber rules and the script that go with the graphs,
+  and the PipeWire access setting.
 - `tools/layout_to_filter_chain.py`: generates `graphs/speakers.json` from
   an AppleHDA layout converted to JSON (`tools/README.md`). The layout is
   not part of this repository and nothing at install or run time needs
