@@ -46,12 +46,13 @@ for them.
 
 - The kernel driver for the sound card,
   [snd_hda_macbookpro](https://github.com/davidjo/snd_hda_macbookpro) by
-  davidjo. It is not part of the Linux kernel. Until two fixes are merged
+  davidjo. It is not part of the Linux kernel. Until three fixes are merged
   there, install it from the fork at
   [github.com/dnlbtz/snd_hda_macbookpro](https://github.com/dnlbtz/snd_hda_macbookpro),
   branch `packaging`, which has packaging for Arch and Ubuntu. Without
-  the fixes the speakers stay silent after a hibernation and the headset
-  microphone does not work.
+  the fixes the speakers stay silent after a hibernation, the headset
+  microphone does not work, and the driver does not build on kernel 7.3.6
+  and later.
 - PipeWire 1.4 or later with its LV2 plugin (`pipewire-audio` on
   Arch/CachyOS, `libspa-0.2-modules-extra` on Ubuntu) and WirePlumber 0.5.8 or
   later.
