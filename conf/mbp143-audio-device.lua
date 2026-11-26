@@ -25,6 +25,9 @@
 --    preAmp controls, so the source volume stays at 100 %. The builtin
 --    linear's Mult stops at 10 (20 dB), so each channel has two stages in
 --    series, each set to the square root.
+-- 4. After a profile switch the input route is set once to the other mic and
+--    back, to clear a stale port flag in PipeWire (details at
+--    repairInputRoute).
 
 cutils = require ("common-utils")
 log = Log.open_topic ("s-mbp143-audio")
@@ -202,8 +205,99 @@ function followMicRoute (device)
   end
 end
 
+-- Both profiles share the input device, and PipeWire's ACP (acp.c,
+-- device_enable, 1.6.11 and master) re-enables it on a profile switch
+-- without clearing the "active" flag of the port it had: two ports are then
+-- flagged, ACP reports the first one, the internal mic, and a later set to
+-- the headset mic finds it already active and changes nothing. The headset
+-- mic then records with the internal mic's pre-amp, 35 dB too quiet.
+-- Setting the other port and back clears the stale flag. The target is the
+-- reported route if it is not unavailable, else the input route WirePlumber
+-- picks: available, then highest priority.
+local REPAIR_MS = 300
+local repairedProfile, repairPending = nil, false
+
+function inputRoutes (device)
+  local routes = {}
+  for p in device:iterate_params ("EnumRoute") do
+    local route = cutils.parseParam (p, "EnumRoute")
+    if route and route.direction == "Input" then
+      table.insert (routes, route)
+    end
+  end
+  return routes
+end
+
+function activeInputRoute (device)
+  for p in device:iterate_params ("Route") do
+    local route = cutils.parseParam (p, "Route")
+    if route and route.direction == "Input" then
+      return route
+    end
+  end
+  return nil
+end
+
+function setInputRoute (device, route, deviceIndex)
+  device:set_param ("Route", Pod.Object {
+    "Spa:Pod:Object:Param:Route", "Route",
+    index = route.index,
+    device = deviceIndex,
+    save = false,
+  })
+end
+
+function repairInputRoute (device)
+  local active = activeInputRoute (device)
+  local routes = inputRoutes (device)
+  if not active or #routes < 2 then
+    return
+  end
+  local target = nil
+  for _, route in ipairs (routes) do
+    if route.name == active.name and route.available ~= "no" then
+      target = route
+    end
+  end
+  if not target then
+    local rank = { yes = 2, unknown = 1, no = 0 }
+    for _, route in ipairs (routes) do
+      if not target or rank [route.available] > rank [target.available] or
+          (rank [route.available] == rank [target.available] and route.priority > target.priority) then
+        target = route
+      end
+    end
+  end
+  for _, route in ipairs (routes) do
+    if route.name ~= target.name then
+      log:info (device, "input route " .. route.name .. " and back to " .. target.name)
+      setInputRoute (device, route, active.device)
+      setInputRoute (device, target, active.device)
+      return
+    end
+  end
+end
+
+function followProfileForRoutes (device)
+  local active = activeProfile (device)
+  if not active or active.name == repairedProfile or repairPending then
+    return
+  end
+  repairPending = true
+  Core.timeout_add (REPAIR_MS, function ()
+    repairPending = false
+    local now = activeProfile (device)
+    if now then
+      repairedProfile = now.name
+      repairInputRoute (device)
+    end
+    return false
+  end)
+end
+
 function update (device)
   followJack (device)
+  followProfileForRoutes (device)
   followMicRoute (device)
   local active = activeProfile (device)
   if active and active.name == SPEAKERS then
