@@ -1,7 +1,7 @@
 # Maintainer: Daniel Betz <dnlbtz@gmail.com>
 
 pkgname=mbp143-audio
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc='Audio DSP for the 15" MacBook Pro of 2017 (MacBookPro14,3): speaker and microphone graphs for PipeWire, with LV2 plugins'
 arch=('x86_64')

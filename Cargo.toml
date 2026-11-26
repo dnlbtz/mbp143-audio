@@ -10,7 +10,7 @@ resolver = "2"
 [workspace.package]
 authors = ["Daniel Betz <dnlbtz@gmail.com>"]
 license = "MIT"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 repository = "https://github.com/dnlbtz/mbp143-audio"
 readme = "README.md"

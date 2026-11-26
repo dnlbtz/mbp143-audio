@@ -91,14 +91,14 @@ dependencies = [
 
 [[package]]
 name = "mbp143-audio-dsp"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "mbp143-audio-dsp",
 ]
 
 [[package]]
 name = "mbp143-audio-lv2"
-version = "1.0.0"
+version = "1.0.1"
 dependencies = [
  "lv2",
  "mbp143-audio-dsp",
